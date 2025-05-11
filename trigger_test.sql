@@ -1,0 +1,31 @@
+BEGIN
+    VeriGirisi.UcakEkle('Boeing 787 Dreamliner', 240);
+END;
+/
+
+
+BEGIN
+    VeriGirisi.UcusEkle(4, 1004, 'AYT', TO_DATE('2025-06-03 09:00', 'YYYY-MM-DD HH24:MI'), TO_DATE('2025-06-03 11:15', 'YYYY-MM-DD HH24:MI'));
+END;
+/
+
+BEGIN
+ VeriGirisi.YolcuEkle('45678901234', 'Kerem', 'Toprak', TO_DATE('1985-08-09', 'YYYY-MM-DD'), 'T.C.');
+END;
+/
+
+BEGIN
+  VeriGirisi.CheckinEkle(4, 4, TO_DATE('2025-06-03 07:45', 'YYYY-MM-DD HH24:MI'));
+END;
+/
+
+BEGIN 
+      VeriGirisi.YolcuEkle('67890123456', 'Naz', 'Koç', TO_DATE('1992-05-03', 'YYYY-MM-DD'), 'T.C.');
+END;
+/
+
+SELECT * FROM TEKNIK_BAKIM_KAYITLARI;
+SELECT * FROM KAPILAR;
+SELECT * FROM BILETLER;
+SELECT * FROM BAGAJLAR;
+SELECT * FROM VIP_HIZMETLER;

@@ -1,0 +1,15 @@
+BEGIN
+    VeriSil.UcakSil(1);
+    VeriSil.UcusSil(1);
+    VeriSil.PersonelSil(1);
+    VeriSil.YolcuSil(1);
+    VeriSil.BiletSil(1);
+    VeriSil.KapiSil(1);
+    VeriSil.CheckinSil(1);
+    VeriSil.BagajSil(1);
+    VeriSil.TeknikBakimKayitSil(1);
+    VeriSil.BagajIslemSil(1);
+    VeriSil.VipHizmetSil(1);
+    VeriSil.KayipEsyaSil(1);
+END;
+/

@@ -4,13 +4,13 @@ CREATE OR REPLACE PACKAGE VeriGirisi AS
     PROCEDURE PersonelEkle(p_ad IN VARCHAR2, p_soyad IN VARCHAR2, p_gorev IN VARCHAR2, p_departman IN VARCHAR2);
     PROCEDURE YolcuEkle(p_tcNO IN VARCHAR2, p_ad IN VARCHAR2, p_soyad IN VARCHAR2, p_dogumTarihi IN DATE, p_uyruk IN VARCHAR2);
     PROCEDURE BiletEkle(p_yolcuID IN NUMBER, p_ucusID IN NUMBER, p_koltukNo IN NUMBER, p_fiyat IN NUMBER, p_sinif IN NUMBER);
-    PROCEDURE KapiEkle(p_kapiNO IN VARCHAR2, p_kat IN VARCHAR2, p_durum IN VARCHAR2);
+    PROCEDURE KapiEkle(p_kapiNO IN VARCHAR2, p_kat IN VARCHAR2, p_durum IN VARCHAR2, p_ucusID IN NUMBER);
     PROCEDURE CheckinEkle(p_biletID IN NUMBER, p_kapiID IN NUMBER, p_checkinSaati IN DATE);
     PROCEDURE BagajEkle(p_checkinID IN NUMBER, p_agirlik IN NUMBER, p_etiketNO IN VARCHAR2);
     PROCEDURE TeknikBakimKayitEkle(p_ucakID IN NUMBER, p_personelID IN NUMBER, p_islemTipi IN VARCHAR2);
     PROCEDURE BagajIslemEkle(p_bagajID IN NUMBER, p_durum IN VARCHAR2);
     PROCEDURE VipHizmetEkle(p_yolcuID IN NUMBER, p_hizmetTipi IN VARCHAR2);
-    PROCEDURE KayipEsyaEkle(p_bulunmaTarihi IN DATE, p_tanim IN VARCHAR2, p_teslimDurumu IN VARCHAR2);
+    PROCEDURE KayipEsyaEkle(p_ucusID IN NUMBER, p_bulunmaTarihi IN DATE, p_tanim IN VARCHAR2, p_teslimDurumu IN VARCHAR2);
 END VeriGirisi;
 /
 CREATE OR REPLACE PACKAGE BODY VeriGirisi AS
@@ -44,10 +44,10 @@ CREATE OR REPLACE PACKAGE BODY VeriGirisi AS
         VALUES(p_yolcuID, p_ucusID, p_koltukNo, p_fiyat, p_sinif);
     END;
     
-    PROCEDURE KapiEkle(p_kapiNO IN VARCHAR2, p_kat IN VARCHAR2, p_durum IN VARCHAR2) IS
+    PROCEDURE KapiEkle(p_kapiNO IN VARCHAR2, p_kat IN VARCHAR2, p_durum IN VARCHAR2, p_ucusID IN NUMBER) IS
     BEGIN
-        INSERT INTO KAPILAR(kapiNO, kat, durum)
-        VALUES(p_kapiNO, p_kat, p_durum);
+        INSERT INTO KAPILAR(kapiNO, kat, durum, ucusID)
+        VALUES(p_kapiNO, p_kat, p_durum, p_ucusID);
     END;
     
     PROCEDURE CheckinEkle(p_biletID IN NUMBER, p_kapiID IN NUMBER, p_checkinSaati IN DATE) IS
@@ -80,14 +80,18 @@ CREATE OR REPLACE PACKAGE BODY VeriGirisi AS
         VALUES(p_yolcuID, p_hizmetTipi);
     END;
     
-    PROCEDURE KayipEsyaEkle(p_bulunmaTarihi IN DATE, p_tanim IN VARCHAR2, p_teslimDurumu IN VARCHAR2) IS
+    PROCEDURE KayipEsyaEkle(p_ucusID IN NUMBER, p_bulunmaTarihi IN DATE, p_tanim IN VARCHAR2, p_teslimDurumu IN VARCHAR2) IS
     BEGIN
-        INSERT INTO KAYIP_ESYALAR(bulunmaTarihi, tanim, teslimDurumu)
-        VALUES(p_bulunmaTarihi, p_tanim, p_teslimDurumu);
+        INSERT INTO KAYIP_ESYALAR(ucusID, bulunmaTarihi, tanim, teslimDurumu)
+        VALUES(p_ucusID, p_bulunmaTarihi, p_tanim, p_teslimDurumu);
     END;
     
 END VeriGirisi;
 /
+
+
+
+
 ALTER PACKAGE VERIGIRISI COMPILE BODY;
 SELECT * FROM user_errors WHERE name = 'VERIGIRISI';
 SELECT * FROM user_errors WHERE name = 'VERIGIRISI';

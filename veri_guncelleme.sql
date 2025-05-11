@@ -4,13 +4,13 @@ CREATE OR REPLACE PACKAGE VeriGuncelle AS
     PROCEDURE PersonelGuncelle(p_personelID IN NUMBER, p_ad IN VARCHAR2, p_soyad IN VARCHAR2, p_gorev IN VARCHAR2, p_departman IN VARCHAR2);
     PROCEDURE YolcuGuncelle(p_yolcuID IN NUMBER, p_tcNO IN VARCHAR2, p_ad IN VARCHAR2, p_soyad IN VARCHAR2, p_dogumTarihi IN DATE, p_uyruk IN VARCHAR2);
     PROCEDURE BiletGuncelle(p_biletID IN NUMBER, p_yolcuID IN NUMBER, p_ucusID IN NUMBER, p_koltukNo IN NUMBER, p_fiyat IN NUMBER, p_sinif IN NUMBER);
-    PROCEDURE KapiGuncelle(p_kapiID IN NUMBER, p_kapiNO IN VARCHAR2, p_kat IN VARCHAR2, p_durum IN VARCHAR2);
+    PROCEDURE KapiGuncelle(p_kapiID IN NUMBER, p_kapiNO IN VARCHAR2, p_kat IN VARCHAR2, p_durum IN VARCHAR2, p_ucusID IN NUMBER);
     PROCEDURE CheckinGuncelle(p_checkinID IN NUMBER, p_biletID IN NUMBER, p_kapiID IN NUMBER, p_checkinSaati IN DATE);
     PROCEDURE BagajGuncelle(p_bagajID IN NUMBER, p_checkinID IN NUMBER, p_agirlik IN NUMBER, p_etiketNO IN VARCHAR2);
     PROCEDURE TeknikBakimKayitGuncelle(p_bakimID IN NUMBER, p_ucakID IN NUMBER, p_personelID IN NUMBER, p_islemTipi IN VARCHAR2);
     PROCEDURE BagajIslemGuncelle(p_bagajIslemID IN NUMBER, p_bagajID IN NUMBER, p_durum IN VARCHAR2);
     PROCEDURE VipHizmetGuncelle(p_hizmetID IN NUMBER, p_yolcuID IN NUMBER, p_hizmetTipi IN VARCHAR2);
-    PROCEDURE KayipEsyaGuncelle(p_esyaID IN NUMBER, p_bulunmaTarihi IN DATE, p_tanim IN VARCHAR2, p_teslimDurumu IN VARCHAR2);
+    PROCEDURE KayipEsyaGuncelle(p_esyaID IN NUMBER, p_ucusID IN NUMBER, p_bulunmaTarihi IN DATE, p_tanim IN VARCHAR2, p_teslimDurumu IN VARCHAR2);
 END VeriGuncelle;
 /
 
@@ -51,10 +51,10 @@ CREATE OR REPLACE PACKAGE BODY VeriGuncelle AS
         WHERE biletID = p_biletID;
     END;
 
-    PROCEDURE KapiGuncelle(p_kapiID IN NUMBER, p_kapiNO IN VARCHAR2, p_kat IN VARCHAR2, p_durum IN VARCHAR2) IS
+    PROCEDURE KapiGuncelle(p_kapiID IN NUMBER, p_kapiNO IN VARCHAR2, p_kat IN VARCHAR2, p_durum IN VARCHAR2, p_ucusID IN NUMBER) IS
     BEGIN
         UPDATE KAPILAR
-        SET kapiNO = p_kapiNO, kat = p_kat, durum = p_durum
+        SET kapiNO = p_kapiNO, kat = p_kat, durum = p_durum, ucusID = p_ucusID
         WHERE kapiID = p_kapiID;
     END;
 
@@ -93,10 +93,10 @@ CREATE OR REPLACE PACKAGE BODY VeriGuncelle AS
         WHERE hizmetID = p_hizmetID;
     END;
 
-    PROCEDURE KayipEsyaGuncelle(p_esyaID IN NUMBER, p_bulunmaTarihi IN DATE, p_tanim IN VARCHAR2, p_teslimDurumu IN VARCHAR2) IS 
+    PROCEDURE KayipEsyaGuncelle(p_esyaID IN NUMBER, p_ucusID IN NUMBER, p_bulunmaTarihi IN DATE, p_tanim IN VARCHAR2, p_teslimDurumu IN VARCHAR2) IS 
     BEGIN
         UPDATE KAYIP_ESYALAR
-        SET bulunmaTarihi = p_bulunmaTarihi, tanim = p_tanim, teslimDurumu = p_teslimDurumu
+        SET ucusID = p_ucusID, bulunmaTarihi = p_bulunmaTarihi, tanim = p_tanim, teslimDurumu = p_teslimDurumu
         WHERE esyaID = p_esyaID;
     END;
 

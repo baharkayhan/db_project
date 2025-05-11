@@ -79,5 +79,4 @@ CREATE OR REPLACE PACKAGE BODY VeriSil AS
 END VeriSil;
 /
 
-
 SELECT * FROM user_errors WHERE name = 'VERISIL';
