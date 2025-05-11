@@ -11,7 +11,8 @@ BEGIN
         JOIN UCUSLAR u ON b.ucusID = u.ucusID
         WHERE u.ucusID = v_ucusID
     ) LOOP
-        DBMS_OUTPUT.PUT_LINE('BiletID: ' || r.biletID || ', Ad: ' || r.ad || ', Soyad: ' || r.soyad || ', UçuþID: ' || r.ucusID || ', Koltuk No: ' || r.koltukNO);
+        DBMS_OUTPUT.PUT_LINE('BiletID: ' || r.biletID || ', Ad: ' || r.ad || 
+        ', Soyad: ' || r.soyad || ', UçuþID: ' || r.ucusID || ', Koltuk No: ' || r.koltukNO);
     END LOOP;
 END;
 /
@@ -24,7 +25,8 @@ BEGIN
         FROM KAYIP_ESYALAR
         WHERE teslimDurumu = v_durum
     ) LOOP
-        DBMS_OUTPUT.PUT_LINE('EþyaID: ' || r.esyaID || ', UcusID: ' || r.ucusID || ', Tarih: ' || r.bulunmaTarihi || ', Taným: ' || r.tanim || ', Durum: ' || r.teslimDurumu);
+        DBMS_OUTPUT.PUT_LINE('EþyaID: ' || r.esyaID || ', UcusID: ' || r.ucusID || ', Tarih: ' 
+        || r.bulunmaTarihi || ', Taným: ' || r.tanim || ', Durum: ' || r.teslimDurumu);
     END LOOP;
 END;
 /
@@ -42,7 +44,8 @@ BEGIN
         WHERE (v_gorev IS NULL OR gorev = v_gorev)
           AND (v_departman IS NULL OR departman = v_departman)
     ) LOOP
-        DBMS_OUTPUT.PUT_LINE('ID: ' || r.personelID || ', Ad: ' || r.ad || ', Soyad: ' || r.soyad || ', Görev: ' || r.gorev || ', Departman: ' || r.departman);
+        DBMS_OUTPUT.PUT_LINE('ID: ' || r.personelID || ', Ad: ' || r.ad || ', Soyad: '
+        || r.soyad || ', Görev: ' || r.gorev || ', Departman: ' || r.departman);
     END LOOP;
 END;
 /
@@ -59,7 +62,8 @@ BEGIN
         FROM UCUSLAR
         WHERE kalkisSaati BETWEEN v_baslangic AND v_bitis
     ) LOOP
-        DBMS_OUTPUT.PUT_LINE('UçuþID: ' || r.ucusID || ', Kod: ' || r.ucusKodu || ', Hedef: ' || r.hedefHavalimani || ', Kalkýþ: ' || r.kalkisSaati || ', Varýþ: ' || r.varisSaati);
+        DBMS_OUTPUT.PUT_LINE('UçuþID: ' || r.ucusID || ', Kod: ' || r.ucusKodu || 
+        ', Hedef: ' || r.hedefHavalimani || ', Kalkýþ: ' || r.kalkisSaati || ', Varýþ: ' || r.varisSaati);
     END LOOP;
 END;
 /

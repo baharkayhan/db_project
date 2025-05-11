@@ -77,5 +77,4 @@ BEGIN
 END;
 /
 
-
 SELECT * FROM user_errors WHERE name = 'TRG_UCAK_INSERT' AND type = 'TRIGGER';
